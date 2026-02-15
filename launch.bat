@@ -1,3 +1,4 @@
 @echo off
-python code\python\main.py
+cd /d "%~dp0"
+python "code\python\main.py"
 pause
