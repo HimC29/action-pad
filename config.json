@@ -36,6 +36,17 @@
                     "command": "firefox"
                 }
             },
+            "btn4": {
+                "type": "toggle",
+                "on": {
+                    "type": "command",
+                    "command": "notify-send --app-name='System' 'on'"
+                },
+                "off": {
+                    "type": "command",
+                    "command": "notify-send --app-name='System' 'off'"
+                }
+            },
             "btn16": {
                 "type": "layer",
                 "target": "code-mode"
