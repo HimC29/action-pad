@@ -1,280 +1,395 @@
-# Action Pad
+<div align="center">
 
-[![Action Pad](https://img.shields.io/badge/Action-Pad-f97316?style=for-the-badge)](https://himc29.github.io/action-pad/) ![Productivity & Convenience](https://img.shields.io/badge/Productivity-Convenience-3b82f6?style=for-the-badge) ![MIT License](https://img.shields.io/badge/License-MIT-6b7280?style=for-the-badge)
+# ⚡ Action Pad
 
-An easy DIY Arduino button pad that lets you trigger commands, hotkeys, and macros to boost productivity and workflow efficiency.
+### Your Physical Shortcut to Digital Productivity
 
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Arduino](https://img.shields.io/badge/Arduino-Compatible-00979D?style=for-the-badge&logo=arduino&logoColor=white)](https://www.arduino.cc/)
+[![Python](https://img.shields.io/badge/Python-3.6+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
 
-## Features
+**Transform a simple Arduino keypad into a powerful productivity tool that executes commands, hotkeys, and macros at the press of a button.**
 
-- **Custom Button Actions** - Assign each button to run commands, hotkeys, or macros.
-- **Layer Support** - Switch between layers to expand the number of available actions without adding more buttons.
-- **Short & Long Press Detection** - Trigger different actions depending on how long a button is pressed.
-- **Command Execution** - Run terminal commands directly from your button pad.
-- **Hotkey Support** - Trigger single or multiple key combinations instantly.
-- **Macro System** - Chain multiple actions together for more advanced workflows.
-- **Plug & Play Setup** - Automatically detects connected Arduino devices.
-- **Fully Configurable** - Edit button behavior easily through a JSON config file.
+[Features](#-features) • [Quick Start](#-quick-start) • [Demo](#-demo) • [Configuration](#-configuration) • [Contributing](#-contributing)
+
+</div>
 
 ---
 
-## How to start using
+## 👁️ Demo
 
-1. Clone this repository
-    ```
-    git clone https://github.com/HimC29/action-pad
-    ```
+<!-- TODO: Add demo GIF here -->
+<!-- Suggested: Record a GIF showing button presses triggering actions -->
+<!-- Example: ![Action Pad Demo](docs/demo.gif) -->
 
-1. Wire the keypad to the Arduino
-[Click here to see wiring](#wiring)
-
-1. Upload the code to the Arduino.
-Open Arduino IDE and open the file at [/code/arduino/main/main.ino](/code/arduino/main/main.ino)
-(You might have to change the code to match your keypad)
-
-1. Edit [config.json](/config.json) to change what each button does.
-[Learn how](#how-to-change-button-configurations)
-
-1. Run [launch.sh](/launch.sh) on Linux/mac, [launch.bat](/launch.bat) on Windows.  
-   > Make sure you have Python 3 and dependencies installed:
-   > - pyserial
-   > - pyautogui
-
-1. Navigate through the TUI to connect to the Arduino and start executing actions.
-[Learn how](#navigating-the-action-pad-tui)
+> **🎬 Tip:** Add a demo GIF showing your Action Pad in action! Record yourself pressing buttons and triggering various actions like opening apps, executing hotkeys, or running macros.
 
 ---
 
-## Navigating the Action Pad TUI
+## ✨ Features
 
-1. After you run [launch.sh](/launch.sh) / [launch.bat](/launch.bat), it will ask you to choose a Serial port that your device is connected to:
-    ```
-    == Action Pad - Setup ==
-    Control actions on your device with a simple press of a button.
+<table>
+<tr>
+<td>
 
-    Available Action Pads:
-    1: /dev/ttyACM1 - ttyACM1
-    ```
-    Choose the correct Serial port by typing in the number at the left side and hitting enter.
+✅ **Custom Button Actions**  
+Assign commands, hotkeys, or macros to each button
 
-1. Wait for it to connect to the Arduino.
+✅ **Multi-Layer Support**  
+Expand functionality without adding hardware
 
-1. Once it says `Successfully connected to Action Pad!`, you can start pressing buttons to execute actions.
+✅ **Short & Long Press**  
+Double your actions with press duration detection
 
-1. Change what each button does in config.json, or use the sample configs.
-(Stop and rerun [launch.sh](/launch.sh) / [launch.bat](/launch.bat) after changing)
+✅ **Command Execution**  
+Run any terminal command instantly
 
----
+</td>
+<td>
 
-## Wiring
+✅ **Hotkey Automation**  
+Trigger complex key combinations effortlessly
 
-Keypads have multiple pins that connect to the Arduino’s digital pins. The exact number of pins depends on your keypad (commonly 7 or 8).
+✅ **Macro Chaining**  
+Combine multiple actions into workflows
 
-### How to Connect
-1. Connect all keypad pins to Arduino digital pins.
-1. The exact pin order may differ between keypads, so check your keypad’s datasheet or just keep trying until you figure it out (that's what I did with mine).
-1. If your keypad mapping doesn’t match the example in the Arduino code, update the pin assignments in the code to match your hardware.
+✅ **Plug & Play**  
+Auto-detects Arduino devices
 
-### Example Mapping
-> - Pin 1 → D2
-> - Pin 2 → D3
-> - Pin 3 → D4
-> - Pin 4 → D5
-> - Pin 5 → D6
-> - Pin 6 → D7
-> - Pin 7 → D8
-> - Pin 8 → D9
+✅ **JSON Configuration**  
+Easy-to-edit, human-readable config
 
-> Tip: Even if your keypad has 7 pins, the same concept applies. Just connect all pins to digital pins and update the Arduino code if needed.
+</td>
+</tr>
+</table>
 
 ---
 
-## How to change button configurations
+## 🤔 Why Action Pad?
 
-To change the configuration on what each button does, change it in [config.json](/config.json).
+As developers, designers, and power users, we constantly switch between applications, execute repetitive commands, and trigger the same hotkey combinations dozens of times a day. **Action Pad was born from frustration with this inefficiency.**
 
-### Format
+### The Problem
+- ⏱️ Repetitive keyboard shortcuts slow you down
+- 🧠 Remembering complex key combinations is mentally taxing
+- 💻 Context switching breaks your flow
+- 🔄 Running the same terminal commands over and over is tedious
 
-1. Top level
-    ```
-    {
-        "active_layer": "name-of-layer",
-        "layers": { ... }
+### The Solution
+**A physical, programmable button pad that puts your most-used actions at your fingertips.** One button press can:
+- Launch your entire development environment
+- Copy text and send a notification
+- Switch between different workflow "modes"
+- Execute complex multi-step macros
+
+It's like having a custom control panel for your digital life. 🎮
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Arduino board (Uno, Nano, Mega, etc.)
+- 4x4 matrix keypad (or any compatible keypad)
+- Python 3.6+
+- Arduino IDE
+
+### Installation
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/HimC29/action-pad.git
+cd action-pad
+```
+
+**2. Install Python dependencies**
+```bash
+pip install pyserial pyautogui
+```
+
+**3. Wire your keypad to Arduino**  
+Connect keypad pins to Arduino digital pins (see [Wiring Guide](#-wiring-guide))
+
+**4. Upload Arduino code**
+- Open `/code/arduino/main/main.ino` in Arduino IDE
+- Select your board and port
+- Click Upload ⬆️
+
+**5. Configure your buttons**
+```bash
+# Edit config.json to customize button actions
+nano config.json  # or use your favorite editor
+```
+
+**6. Launch Action Pad**
+```bash
+# Linux/macOS
+./launch.sh
+
+# Windows
+launch.bat
+```
+
+**7. Select your Arduino from the menu and start pressing buttons! 🎉**
+
+---
+
+## 🔌 Wiring Guide
+
+Matrix keypads typically have 7-8 pins that connect to Arduino digital pins.
+
+### Connection Steps
+
+1. **Connect all keypad pins to Arduino digital pins**
+2. **Check your keypad's datasheet** for the correct pin order (or experiment!)
+3. **Update the Arduino code** if your mapping differs from the example
+
+### Example Pin Mapping (4x4 Keypad)
+
+```
+Keypad Pin  →  Arduino Pin
+─────────────────────────
+Pin 1       →  D2
+Pin 2       →  D3
+Pin 3       →  D4
+Pin 4       →  D5
+Pin 5       →  D6
+Pin 6       →  D7
+Pin 7       →  D8
+Pin 8       →  D9
+```
+
+<!-- TODO: Add wiring diagram image -->
+<!-- Suggested: Create a Fritzing diagram or photo of your setup -->
+<!-- Example: ![Wiring Diagram](docs/wiring-diagram.png) -->
+
+> 💡 **Tip:** Different keypads may have different pin configurations. If buttons don't respond correctly, try adjusting the pin assignments in `/code/arduino/main/main.ino`.
+
+---
+
+## ⚙️ Configuration
+
+Action Pad uses a simple JSON file to define button behaviors. Edit `config.json` to customize your setup.
+
+### Configuration Structure
+
+```json
+{
+    "active_layer": "default",
+    "layers": {
+        "default": {
+            "btn1": { /* button config */ }
+        }
     }
-    ```
-    - **"active_layer"** - Which layer the pad starts on. (Change name-of-layer to your layer name)
-    - **"layers"** - Contains all the layers you define.
+}
+```
 
-1. Layers
-A layer is basically a “mode” with its own set of button configurations.
-    ```
-    "name-of-layer": {
-        "btn1": { ... },
-        "btn2": { ... },
-        "btn5": { ... },
-        "btn16": { ... }
+- **`active_layer`** - The layer that loads on startup
+- **`layers`** - Contains all your layer definitions
+
+### Button Action Types
+
+#### 🔹 Hotkey
+Trigger keyboard shortcuts
+
+```json
+"btn1": {
+    "type": "hotkey",
+    "keys": ["ctrl", "c"],
+    "long": {
+        "type": "hotkey",
+        "keys": ["ctrl", "v"]
     }
-    ```
-    - **"btn1" - "btn16"** - These are the names of the buttons. You can check what are they in the [Arduino code](/code/arduino/main/main.ino).
-    - **"properties"** - Each button has a type propertie that declares the type of action the button does. They also have another property that depends on the type which declares what it is the exact action the button needs to do.
+}
+```
 
-1. Button Types
-Your pad supports 4 main types: (as of Version 1.0)
-    - **"hotkey"**
-        ```
-        btn1": {
+#### 🔹 Command
+Execute terminal commands
+
+```json
+"btn2": {
+    "type": "command",
+    "command": "google-chrome"
+}
+```
+
+#### 🔹 Macro
+Chain multiple actions together
+
+```json
+"btn3": {
+    "type": "macro",
+    "actions": [
+        {
             "type": "hotkey",
-            "keys": ["ctrl", "c"],
-            "long": {
-                "type": "hotkey",
-                "keys": ["ctrl", "v"]
-            }
-        }
-        ```
-        - **The "type" attribute** - The type is "hotkey", which shows that this button will execute a sequence of keys which is shown under the "keys" attribute. This applies to other buttons as well.
-        - **The "keys" attribute** - This stores the key sequence that executes when the button is pressed.
-        - **The "long" attribute** - Optional, an extra action (hotkey in this situation) to run when the button is long-pressed. (This can be used for any button and any type)
-    - **"command"**
-        ```
-        "btn2": {
+            "keys": ["ctrl", "c"]
+        },
+        {
             "type": "command",
-            "command": "google-chrome",
+            "command": "notify-send 'Copied!'"
         }
-        ```
-        - **The "command" attribute** - This stores information about what command to run when the button is pressed.
-    - **"macro"**
-        ```
-        "btn5": {
-            "type": "macro",
-            "actions": [
-                {
-                    "type": "hotkey",
-                    "keys": ["ctrl", "c"]
-                },
-                {
-                    "type": "command",
-                    "command": "notify-send --app-name='System' 'Copied text!'"
-                }
-            ]
-        }
-        ```
-        - **The "actions" attribute** - This stores information about what action to run when pressed. Actions inside a macro follow the same format as individual button types.
-    - **"layer"**
-        ```
-        "btn16": {
-            "type": "layer",
-            "target": "code-mode"
-        }
-        ```
-        - **"target"** - This changes the current layer to the layer stated inside this attribute.
+    ]
+}
+```
 
-1. Example
-    ```
-    {
-        "active_layer": "default",
-        "layers": {
-            "default": {
-                "btn1": {
+#### 🔹 Layer Switch
+Change to a different button layout
+
+```json
+"btn16": {
+    "type": "layer",
+    "target": "code-mode"
+}
+```
+
+### Complete Example
+
+<details>
+<summary>Click to expand full config.json example</summary>
+
+```json
+{
+    "active_layer": "default",
+    "layers": {
+        "default": {
+            "btn1": {
+                "type": "macro",
+                "actions": [
+                    {
+                        "type": "hotkey",
+                        "keys": ["ctrl", "c"]
+                    },
+                    {
+                        "type": "command",
+                        "command": "notify-send --app-name='System' 'Copied text!'"
+                    }
+                ],
+                "long": {
                     "type": "macro",
                     "actions": [
                         {
                             "type": "hotkey",
-                            "keys": ["ctrl", "c"]
+                            "keys": ["ctrl", "v"]
                         },
                         {
                             "type": "command",
-                            "command": "notify-send --app-name='System' 'Copied text!'"
+                            "command": "notify-send --app-name='System' 'Pasted text!'"
                         }
-                    ],
-                    "long": {
-                        "type": "macro",
-                        "actions": [
-                            {
-                                "type": "hotkey",
-                                "keys": ["ctrl", "v"]
-                            },
-                            {
-                                "type": "command",
-                                "command": "notify-send --app-name='System' 'Pasted text!'"
-                            }
-                        ]
-                    }
-                },
-                "btn2": {
-                    "type": "command",
-                    "command": "google-chrome",
-                    "long": {
-                        "type": "command",
-                        "command": "firefox"
-                    }
-                },
-                "btn16": {
-                    "type": "layer",
-                    "target": "code-mode"
+                    ]
                 }
             },
-            "code-mode": {
-                "btn1": {
+            "btn2": {
+                "type": "command",
+                "command": "google-chrome",
+                "long": {
                     "type": "command",
-                    "command": "google-chrome & code"
-                },
-                "btn4": {
-                    "type": "macro",
-                    "actions": [
-                        {
-                            "type": "hotkey",
-                            "keys": ["ctrl", "c"]
-                        },
-                        {
-                            "type": "command",
-                            "command": "notify-send --app-name='System' 'Copied text!'"
-                        }
-                    ],
-                    "long": {
-                        "type": "macro",
-                        "actions": [
-                            {
-                                "type": "hotkey",
-                                "keys": ["ctrl", "v"]
-                            },
-                            {
-                                "type": "command",
-                                "command": "notify-send --app-name='System' 'Pasted text!'"
-                            }
-                        ]
-                    }
-                },
-                "btn16": {
-                    "type": "layer",
-                    "target": "default"
+                    "command": "firefox"
                 }
+            },
+            "btn16": {
+                "type": "layer",
+                "target": "code-mode"
+            }
+        },
+        "code-mode": {
+            "btn1": {
+                "type": "command",
+                "command": "google-chrome & code"
+            },
+            "btn16": {
+                "type": "layer",
+                "target": "default"
             }
         }
     }
-    ```
+}
+```
 
-## Contributing
-
-Want to make Action Pad better? Contributions are welcome!  
-
----
-
-## Future Plans
-
-- More types to make Action Pad more user friendly (Currently only a few types are supported; most of the time you may need to use a command for certain actions.)
-- Add a proper GUI on another branch
+</details>
 
 ---
 
-## License
+## 🤝 Contributing
 
-MIT License – feel free to use and modify Action Pad.
+Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**!
+
+### How to Contribute
+
+1. **Fork the Project**
+2. **Create your Feature Branch**
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit your Changes**
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. **Push to the Branch**
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open a Pull Request**
+
+### Contribution Ideas
+
+- 🎨 Add new action types (mouse movements, delays, conditionals)
+- 🖥️ Build a GUI configuration tool
+- 📚 Improve documentation and examples
+- 🐛 Report bugs and suggest features via [Issues](https://github.com/HimC29/action-pad/issues)
 
 ---
 
-## Credits / Third-Party Assets
+## 🌟 Contributors
 
-- [Arduino](https://www.arduino.cc/) – Hardware platform used for the button pad
-- [pyserial](https://pypi.org/project/pyserial/) – Python library for serial communication
-- [pyautogui](https://pypi.org/project/PyAutoGUI/) – Python library for GUI automation
+Thanks to everyone who has contributed to Action Pad!
+
+<a href="https://github.com/HimC29/action-pad/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=HimC29/action-pad" />
+</a>
+
+Want to see your name here? Check out the [Contributing](#-contributing) section!
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Additional action types (mouse control, delays, conditionals)
+- [ ] Web-based GUI configuration tool
+- [ ] Support for ESP32 and Raspberry Pi Pico
+- [ ] Profile switching for different workflows
+- [ ] Cloud sync for configurations
+- [ ] Mobile companion app
+
+Have an idea? [Open an issue](https://github.com/HimC29/action-pad/issues) and let's discuss!
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+**TL;DR:** You can use, modify, and distribute this project freely. Just keep the original license notice.
+
+---
+
+## 🙏 Acknowledgments
+
+Built with amazing open-source tools:
+
+- **[Arduino](https://www.arduino.cc/)** - The hardware platform that makes this possible
+- **[pyserial](https://pypi.org/project/pyserial/)** - Python serial communication library
+- **[pyautogui](https://pypi.org/project/PyAutoGUI/)** - GUI automation for Python
+
+---
+
+<div align="center">
+
+### ⭐ Star this repo if you find it useful!
+
+**Made with ❤️ by [HimC29](https://github.com/HimC29)**
+
+[Report Bug](https://github.com/HimC29/action-pad/issues) • [Request Feature](https://github.com/HimC29/action-pad/issues) • [Discussions](https://github.com/HimC29/action-pad/discussions)
+
+</div>
