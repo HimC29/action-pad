@@ -11,19 +11,9 @@
 
 **Transform a simple Arduino keypad into a powerful productivity tool that executes commands, hotkeys, and macros at the press of a button.**
 
-[Features](#-features) • [Quick Start](#-quick-start) • [Demo](#-demo) • [Configuration](#-configuration) • [Contributing](#-contributing)
+[Features](#-features) • [Quick Start](#-quick-start) • [Configuration](#%EF%B8%8F-configuration) • [Contributing](#-contributing)
 
 </div>
-
----
-
-## 👁️ Demo
-
-<!-- TODO: Add demo GIF here -->
-<!-- Suggested: Record a GIF showing button presses triggering actions -->
-<!-- Example: ![Action Pad Demo](docs/demo.gif) -->
-
-> **🎬 Tip:** Add a demo GIF showing your Action Pad in action! Record yourself pressing buttons and triggering various actions like opening apps, executing hotkeys, or running macros.
 
 ---
 
