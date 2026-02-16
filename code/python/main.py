@@ -16,43 +16,51 @@ import pyautogui
 import subprocess
 import arduino_funcs as af
 
+# ANSI color codes
+COLORS = {
+    'CYAN': '\033[96m',
+    'GREEN': '\033[92m',
+    'YELLOW': '\033[93m',
+    'RED': '\033[91m',
+    'BLUE': '\033[94m',
+    'MAGENTA': '\033[95m',
+    'BOLD': '\033[1m',
+    'DIM': '\033[2m',
+    'RESET': '\033[0m'
+}
+
 def select_arduino_port():
-    # Lists available serial ports and prompts the user to select one.
-    # Get a list of available ports
     available_ports = [
         p for p in serial.tools.list_ports.comports()
         if p.description and p.description.lower() != "n/a"
     ]
     
     if not available_ports:
-        print("No Action Pads found.")
+        print(f"{COLORS['RED']}✗ No Action Pads found.{COLORS['RESET']}")
         return None
 
-    print("Available Action Pads:")
-    # Display ports with an index number
+    box_width = 47
+    print(f"\n{COLORS['CYAN']}┌─ Available Action Pads ─────────────────────┐{COLORS['RESET']}")
     for i, port in enumerate(available_ports):
-        # Using port.device for a reliable identifier
-        print(f"{i + 1}: {port.device} - {port.description}")
+        content = f" {i + 1}: {port.device} - {port.description}"
+        padding = box_width - len(content) - 1
+        print(f"{COLORS['CYAN']}│{COLORS['RESET']}{COLORS['BOLD']}{i + 1}{COLORS['RESET']}: {COLORS['GREEN']}{port.device}{COLORS['RESET']} {COLORS['DIM']}- {port.description}{COLORS['RESET']}{' ' * padding}{COLORS['CYAN']}│{COLORS['RESET']}")
+    print(f"{COLORS['CYAN']}└─────────────────────────────────────────────┘{COLORS['RESET']}")
 
     while True:
         try:
-            # Prompt user for input
-            choice = input("Port number: ")
-
-            # Convert input to integer index
+            choice = input(f"\n{COLORS['YELLOW']}❯{COLORS['RESET']} Select port number: ")
             port_index = int(choice) - 1
 
-            # Validate the choice
             if 0 <= port_index < len(available_ports):
                 selected_port = available_ports[port_index].device
-                print(f"Selected port: {selected_port}")
+                print(f"{COLORS['GREEN']}✓ Selected: {selected_port}{COLORS['RESET']}")
                 return selected_port
             else:
-                print("Invalid input.")
+                print(f"{COLORS['RED']}✗ Invalid selection{COLORS['RESET']}")
         
         except ValueError:
-            # Handle non-integer input
-            print("Invalid input.")
+            print(f"{COLORS['RED']}✗ Please enter a number{COLORS['RESET']}")
 
 def create_states(btn_configs):
     current_layer = btn_configs["active_layer"]
@@ -167,22 +175,52 @@ def execute_action(action_and_type, states, btn_data):
         return True
     if action_type == "layer":
         return {"new_layer": action}
+    
+def pretty_action_and_type(action_and_type):
+    action = action_and_type["action"]
+    action_type = action_and_type["type"]
+    
+    type_icons = {
+        'command': '⚡',
+        'hotkey': '⌨️',
+        'macro': '🔗',
+        'layer': '📂',
+        'toggle': '🔄'
+    }
+    icon = type_icons.get(action_type, '•')
+    
+    if action_type == 'hotkey':
+        action_str = ' + '.join(action) if isinstance(action, list) else str(action)
+    elif action_type == 'macro':
+        steps = []
+        for sub in action:
+            if sub['type'] == 'hotkey':
+                keys = ' + '.join(sub['keys']) if isinstance(sub['keys'], list) else str(sub['keys'])
+                steps.append(f"⌨️  {keys}")
+            elif sub['type'] == 'command':
+                steps.append(f"⚡ {sub['command']}")
+        action_str = f"{len(action)} actions\n  {COLORS['DIM']}" + f"\n  ".join(steps) + COLORS['RESET']
+    else:
+        action_str = str(action)
+    
+    return f"{COLORS['BLUE']}{icon} {COLORS['BOLD']}{action_type.upper()}{COLORS['RESET']} {COLORS['DIM']}→{COLORS['RESET']} {COLORS['CYAN']}{action_str}{COLORS['RESET']}"
 
 def main():
-    print("== Action Pad - Setup ==")
-    print("Control actions on your device with a simple press of a button.\n")
+    print(f"\n{COLORS['BOLD']}{COLORS['CYAN']}⚡ Action Pad{COLORS['RESET']} {COLORS['DIM']}v1.2.0{COLORS['RESET']}")
+    print(f"{COLORS['DIM']}Your physical shortcut to digital productivity{COLORS['RESET']}")
 
     port = select_arduino_port()
     if(port == None): exit()
     try:
         af.set_arduino(serial.Serial(port=port, baudrate=9600, timeout=.1))
     except Exception as e:
-        print(f"\nERROR: Could not connect to Action Pad\nDetails: {e}")
+        print(f"\n{COLORS['RED']}✗ Connection failed: {e}{COLORS['RESET']}")
         exit()
 
-    print("\nConnecting to Action Pad...")
+    print(f"\n{COLORS['YELLOW']}⟳ Connecting to Action Pad...{COLORS['RESET']}")
     time.sleep(2)
-    print("Successfully connected to Action Pad!")
+    print(f"{COLORS['GREEN']}✓ Connected! Ready for input.{COLORS['RESET']}\n")
+    print(f"{COLORS['DIM']}{'─' * 50}{COLORS['RESET']}")
 
     with open("config.json") as f:
         btn_configs = json.load(f)
@@ -195,21 +233,23 @@ def main():
         btn_data = get_btn_data()
         if btn_data == None: continue
         try:
-            action_type = resolve_action(btn_data, states, btn_configs)
-            if action_type == None:
+            action_and_type = resolve_action(btn_data, states, btn_configs)
+            if action_and_type == None:
                 continue
-            print(action_type)
-            if action_type["toggle"] == True:
+            if action_and_type["toggle"] == True:
                 states["btn_toggle"][btn_data["btn"]] = not states["btn_toggle"][btn_data["btn"]]        
-            result = execute_action(action_type, states, btn_data)
+            result = execute_action(action_and_type, states, btn_data)
             
+            print(pretty_action_and_type(action_and_type))
+
             if result == True: continue
 
             if "new_layer" in result:
                 states["current_layer"] = result["new_layer"]
+                print(f"{COLORS['MAGENTA']}📂 Switched to layer: {COLORS['BOLD']}{result['new_layer']}{COLORS['RESET']}")
 
         except ValueError as e:
-            print(e)
+            print(f"{COLORS['RED']}✗ Error: {e}{COLORS['RESET']}")
     # states["btn_toggle"][btn_id] to get curr btn
 
 if(__name__ == "__main__"):
