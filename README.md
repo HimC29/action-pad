@@ -11,8 +11,19 @@
 
 **Transform a simple Arduino keypad into a powerful productivity tool that executes commands, hotkeys, and macros at the press of a button.**
 
-[Features](#-features) • [Quick Start](#-quick-start) • [Configuration](#%EF%B8%8F-configuration) • [Contributing](#-contributing)
+[Features](#-features) • [Quick Start](#-quick-start) • [Demo](#-demo) • [Configuration](#%EF%B8%8F-configuration) • [Contributing](#-contributing)
 
+</div>
+
+---
+
+## 👁️ Demo
+
+<div style="display: flex; align-items: center; justify-content: center; gap: 40px;">
+  <img src="assets/demo.gif" alt="Action Pad Demo" width="600"/>
+  <p style="max-width: 350px; margin: 0; font-weight: bold;">
+    A button that executes the command <code>google-chrome & code</code> to open the browser and VS Code, improving efficiency.
+  </p>
 </div>
 
 ---
