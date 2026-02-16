@@ -11,7 +11,7 @@
 
 **Transform a simple Arduino keypad into a powerful productivity tool that executes commands, hotkeys, and macros at the press of a button.**
 
-[Features](#-features) • [Quick Start](#-quick-start) • [Demo](#-demo) • [Configuration](#%EF%B8%8F-configuration) • [Contributing](#-contributing)
+[Features](#-features) • [Quick Start](#-quick-start) • [Demo](#%EF%B8%8F-demo) • [Configuration](#%EF%B8%8F-configuration) • [Contributing](#-contributing)
 
 </div>
 
