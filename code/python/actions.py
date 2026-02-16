@@ -72,8 +72,9 @@ def execute_action(action_and_type, states, btn_data):
         return None
     
     if action_type == ACTION_MACRO:
+        layer_change = None
         for sub_action in action:
-            execute_action(
+            result = execute_action(
                 {
                     "type": sub_action["type"],
                     "action": get_action(sub_action, states, btn_data)
@@ -81,7 +82,9 @@ def execute_action(action_and_type, states, btn_data):
                 states,
                 btn_data
             )
-        return None
+            if result and "new_layer" in result:
+                layer_change = result
+        return layer_change
     
     if action_type == ACTION_LAYER:
         return {"new_layer": action}
