@@ -1,114 +1,114 @@
 {
-  "active_layer": "default",
-  "layers": {
-    "default": {
-      "btn1": {
-        "type": "macro",
-        "actions": [
-          {
-            "type": "hotkey",
-            "keys": ["ctrl", "c"]
-          },
-          {
-            "type": "command",
-            "command": "notify-send --app-name='System' 'Copied text!'"
-          }
-        ],
-        "long": {
-          "type": "macro",
-          "actions": [
-            {
-              "type": "hotkey",
-              "keys": ["ctrl", "v"]
+    "active_layer": "default",
+    "layers": {
+        "default": {
+            "btn1": {
+                "type": "macro",
+                "actions": [
+                    {
+                        "type": "hotkey",
+                        "keys": ["ctrl", "c"]
+                    },
+                    {
+                        "type": "command",
+                        "command": "notify-send --app-name='System' 'Copied text!'"
+                    }
+                ],
+                "long": {
+                    "type": "macro",
+                    "actions": [
+                        {
+                            "type": "hotkey",
+                            "keys": ["ctrl", "v"]
+                        },
+                        {
+                            "type": "command",
+                            "command": "notify-send --app-name='System' 'Pasted text!'"
+                        }
+                    ]
+                }
             },
-            {
-              "type": "command",
-              "command": "notify-send --app-name='System' 'Pasted text!'"
+            "btn2": {
+                "type": "command",
+                "command": "google-chrome",
+                "long": {
+                    "type": "command",
+                    "command": "firefox"
+                }
+            },
+            "btn4": {
+                "type": "toggle",
+                "on": {
+                    "type": "command",
+                    "command": "notify-send --app-name='System' 'Toggle ON'"
+                },
+                "off": {
+                    "type": "command",
+                    "command": "notify-send --app-name='System' 'Toggle OFF'"
+                }
+            },
+            "btn16": {
+                "type": "macro",
+                "actions": [
+                    {
+                        "type": "layer",
+                        "target": "code-mode"
+                    },
+                    {
+                        "type": "command",
+                        "command": "notify-send --app-name='System' 'Code Mode'"
+                    }
+                ]
             }
-          ]
-        }
-      },
-      "btn2": {
-        "type": "command",
-        "command": "google-chrome",
-        "long": {
-          "type": "command",
-          "command": "firefox"
-        }
-      },
-      "btn4": {
-        "type": "toggle",
-        "on": {
-          "type": "command",
-          "command": "notify-send --app-name='System' 'Toggle ON'"
         },
-        "off": {
-          "type": "command",
-          "command": "notify-send --app-name='System' 'Toggle OFF'"
-        }
-      },
-      "btn16": {
-        "type": "macro",
-        "actions": [
-            {
-                "type": "layer",
-                "target": "code-mode"
-            },
-            {
+        "code-mode": {
+            "btn1": {
                 "type": "command",
-                "command": "notify-send --app-name='System' 'Code Mode'"
-            }
-        ]
-      }
-    },
-    "code-mode": {
-      "btn1": {
-        "type": "command",
-        "command": "google-chrome & code"
-      },
-      "btn2": {
-        "type": "command",
-        "command": "code"
-      },
-      "btn4": {
-        "type": "macro",
-        "actions": [
-          {
-            "type": "hotkey",
-            "keys": ["ctrl", "c"]
-          },
-          {
-            "type": "command",
-            "command": "notify-send --app-name='System' 'Copied text!'"
-          }
-        ],
-        "long": {
-          "type": "macro",
-          "actions": [
-            {
-              "type": "hotkey",
-              "keys": ["ctrl", "v"]
+                "command": "google-chrome & code"
             },
-            {
-              "type": "command",
-              "command": "notify-send --app-name='System' 'Pasted text!'"
-            }
-          ]
-        }
-      },
-      "btn16": {
-        "type": "macro",
-        "actions": [
-            {
-                "type": "layer",
-                "target": "default"
-            },
-            {
+            "btn2": {
                 "type": "command",
-                "command": "notify-send --app-name='System' 'Default'"
+                "command": "code"
+            },
+            "btn4": {
+                "type": "macro",
+                "actions": [
+                    {
+                        "type": "hotkey",
+                        "keys": ["ctrl", "c"]
+                    },
+                    {
+                        "type": "command",
+                        "command": "notify-send --app-name='System' 'Copied text!'"
+                    }
+                ],
+                "long": {
+                    "type": "macro",
+                    "actions": [
+                        {
+                            "type": "hotkey",
+                            "keys": ["ctrl", "v"]
+                        },
+                        {
+                            "type": "command",
+                            "command": "notify-send --app-name='System' 'Pasted text!'"
+                        }
+                    ]
+                }
+            },
+            "btn16": {
+                "type": "macro",
+                "actions": [
+                    {
+                        "type": "layer",
+                        "target": "default"
+                    },
+                    {
+                        "type": "command",
+                        "command": "notify-send --app-name='System' 'Default'"
+                    }
+                ]
             }
-        ]
-      }
+        }
     }
-  }
 }
